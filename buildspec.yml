@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Install a web server with PHP
+      - yum update -y 
+      - yum install httpd
+      - yum install php
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - systemctl enable httpd 
+      - systemctl start httpd 
+artifacts:
+  files:
+    - php/index.php
